@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Visio File
+*.vsdx
+
+#.pdf File
+*.pdf
