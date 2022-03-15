@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h1>Teachers</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">Teacher ID</td>
+            <td scope="col">First Name</td>
+            <td scope="col">Last Name</td>
+            <td scope="col">Birthdate</td>
+            <td scope="col">Teacher group</td>
+            <td scope="col">Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan = "6" style="text-align:center">
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href = '/teachers/add'">Add Teacher</button>
+                </div>
+            </td>
+        </tr>
+        {%for teacher in teachers:%}
+            <tr>
+                <td>{{teacher.teacher_Id}}</td>
+                <td>{{teacher.first_name}}</td>
+                <td>{{teacher.last_name}}</td>
+                <td>{{teacher.birthdate}}</td>
+                <td>{{teacher.teacher_in_group_Id}}</td>
+                <td>EDIT BUTTON</td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{%endblock%}

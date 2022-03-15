@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{%block body%}
+<form method="POST" action="/teachers">
+    {{form.csrf_token}}
+
+    <div class="mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+          {{form.first_name}}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+          {{form.last_name}}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Birthdate</label>
+        <div class="col-sm-10">
+          {{form.birthdate}}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Teacher group</label>
+        <div class="col-sm-10">
+          {{form.teacher_in_group_Id}}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+{%endblock%}
