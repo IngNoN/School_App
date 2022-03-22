@@ -29,10 +29,10 @@
                 <td>{{teacher.last_name}}</td>
                 <td>{{teacher.birthdate}}</td>
                 <td>{{teacher.teacher_in_group_Id}}</td>
-                <td><form method="post" action="/delete">
+                <td><form method="post" action="/teachers/delete">
                     {{form.csrf_token}}
                     <input type="hidden" name="teacher_Id" id="teacher_Id" value="{{teacher.teacher_Id}}">
-                        <button class="btn btn-outline-dark" onclick="deleteItem(this); return false;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <button class="btn btn-outline-dark" onclick="delete_teacher(this); return false;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                         <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
                       </svg></button>

@@ -7,7 +7,7 @@ from controllers.teachers import add_teachers_blueprint
 from controllers.departmentManagers import department_managers_blueprint, add_department_manager_blueprint
 from controllers.groupOfTeachers import group_of_teachers_blueprint, add_group_of_teachers_blueprint
 from controllers.teacherInGroup import teacher_in_group_blueprint, add_teacher_in_group_blueprint
-from controllers.delete import delete_blueprint
+from controllers.delete import delete_teacher_blueprint, delete_department_manager_blueprint, delete_group_of_teachers_blueprint
 
 app = Flask(__name__)
 
@@ -27,7 +27,8 @@ app.register_blueprint(add_group_of_teachers_blueprint)
 app.register_blueprint(teacher_in_group_blueprint)
 app.register_blueprint(add_teacher_in_group_blueprint)
 
-app.register_blueprint(delete_blueprint)
-
+app.register_blueprint(delete_teacher_blueprint)
+app.register_blueprint(delete_department_manager_blueprint)
+app.register_blueprint(delete_group_of_teachers_blueprint)
 
 app.run(debug=True)

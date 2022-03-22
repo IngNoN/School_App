@@ -8,9 +8,11 @@ group_of_teachers_blueprint = Blueprint("group_of_teachers_blueprint", __name__)
 @group_of_teachers_blueprint.route("/groupOfTeachers", methods=["get", "post"])
 def group_of_teachers():
     group_of_teachers = db.session.query(GroupOfTeacher).all()
+    addGroupOfTeachersData = AddGroupOfTeachersForm()
 
     return render_template("groupOfTeachers/groupOfTeachers.html",
-    group_of_teachers = group_of_teachers)
+    group_of_teachers = group_of_teachers,
+    form = addGroupOfTeachersData)
 
 add_group_of_teachers_blueprint = Blueprint("add_group_of_teachers_blueprint", __name__)
 

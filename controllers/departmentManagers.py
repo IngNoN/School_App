@@ -7,8 +7,10 @@ department_managers_blueprint = Blueprint("department_managers_blueprint", __nam
 @department_managers_blueprint.route("/department_managers", methods=["get", "post"])
 def department_managers():
     department_managers = db.session.query(DepartmentManager).all()
+    addDepartmentMangerFormData = addDepartmentMangerForm()
     return render_template("departmentManagers/departmentManagers.html",
-    department_managers = department_managers)
+    department_managers = department_managers,
+    form = addDepartmentMangerFormData)
 
 
 add_department_manager_blueprint = Blueprint("add_department_manager_blueprint", __name__)
