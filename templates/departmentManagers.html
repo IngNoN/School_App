@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h1>Department Managers</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">Department Manager ID</td>
+            <td scope="col">First Name</td>
+            <td scope="col">Last Name</td>
+            <td scope="col">E-Mail adress</td>
+            <td scope="col">Department</td>
+            <td scope="col">Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan = "6" style="text-align:center">
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href = '/department_managers/add'">Add Manager</button>
+                </div>
+            </td>
+        </tr>
+        {%for manager in department_managers:%}
+            <tr>
+                <td>{{manager.departmentManager_Id}}</td>
+                <td>{{manager.first_name}}</td>
+                <td>{{manager.last_name}}</td>
+                <td>{{manager.email_adress}}</td>
+                <td>{{manager.department}}</td>
+                <td>EDIT BUTTON</td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+
+{%endblock%}

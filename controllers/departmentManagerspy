@@ -1,9 +1,0 @@
-from flask import Blueprint, render_template
-from models import departments, db
-
-department_managers_blueprint = Blueprint("department_managers_blueprint", __name__)
-
-@department_managers_blueprint.route("/department_managers", methods=["get", "post"])
-def departments():
-    departments = db.session.query(departments).all()
-    return render_template("departmentManagers.html")
