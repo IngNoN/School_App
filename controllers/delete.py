@@ -14,10 +14,10 @@ def deleteItem():
         #db objekt holen
         #delete command ausführen
 
-        itemIdToDelete = DeleteItemFormObj.teacher_Id.data
+        teacher_Id_to_delete = DeleteItemFormObj.teacher_Id.data
 
-        itemToDelete = db.session.query(Teacher).filter(Teacher.teacher_Id == itemIdToDelete)
-        itemToDelete.delete()
+        teacher_to_delte = db.session.query(Teacher).filter(Teacher.teacher_Id == teacher_Id_to_delete)
+        teacher_to_delte.delete()
         db.session.commit()
         
     else:
