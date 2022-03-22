@@ -5,6 +5,7 @@ from controllers.index import index_blueprint
 from controllers.teachers import teachers_blueprint
 from controllers.teachers import add_teachers_blueprint
 from controllers.departmentManagers import department_managers_blueprint, add_department_manager_blueprint
+from controllers.groupOfTeachers import group_of_teachers_blueprint, add_group_of_teachers_blueprint
 
 app = Flask(__name__)
 
@@ -19,6 +20,8 @@ app.register_blueprint(teachers_blueprint)
 app.register_blueprint(add_teachers_blueprint)
 app.register_blueprint(department_managers_blueprint)
 app.register_blueprint(add_department_manager_blueprint)
+app.register_blueprint(group_of_teachers_blueprint)
+app.register_blueprint(add_group_of_teachers_blueprint)
 
 
 app.run(debug=True)
