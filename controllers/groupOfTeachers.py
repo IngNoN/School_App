@@ -9,7 +9,7 @@ group_of_teachers_blueprint = Blueprint("group_of_teachers_blueprint", __name__)
 def group_of_teachers():
     group_of_teachers = db.session.query(GroupOfTeacher).all()
 
-    return render_template("groupOfTeachers.html",
+    return render_template("groupOfTeachers/groupOfTeachers.html",
     group_of_teachers = group_of_teachers)
 
 add_group_of_teachers_blueprint = Blueprint("add_group_of_teachers_blueprint", __name__)
@@ -32,4 +32,4 @@ def add_group_of_teachers():
             return redirect("/groupOfTeachers")
 
         else:
-            return render_template("addGroupOfTeachersForm.html", form = addGroupOfTeachersData)
+            return render_template("groupOfTeachers/addGroupOfTeachersForm.html", form = addGroupOfTeachersData)
