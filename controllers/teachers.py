@@ -37,7 +37,3 @@ def add_teachers():
 
         else:
             return render_template("addTeacherForm.html", form = addTeacherFormData)
-            
-        return render_template("addTeacherForm.html",
-        form = addTeacherFormData,
-        teacher = teachers)
