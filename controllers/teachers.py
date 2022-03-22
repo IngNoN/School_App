@@ -12,9 +12,6 @@ teachers_blueprint = Blueprint("teachers_blueprint", __name__)
 def teachers():
     teachers = db.session.query(Teacher).all()
 
-    
-
-
     return render_template("teachers.html",
     teachers = teachers)
 
@@ -24,7 +21,8 @@ add_teachers_blueprint = Blueprint("add_teachers_blueprint", __name__)
 @add_teachers_blueprint.route("/teachers/add", methods=["get", "post"])
 def add_teachers():
     addTeacherFormData = AddTeacherForm()
-    if request.method == "POST":
+    teachers = db.session.query(Teacher).all()
+    if True: #request.method == "POST":
         if addTeacherFormData.validate_on_submit():
             teacherData = Teacher()
             teacherData.first_name = addTeacherFormData.first_name.data
@@ -35,10 +33,11 @@ def add_teachers():
             db.session.add(teacherData)
             db.session.commit()
         
-            return redirect("/teachers/add")
+            return redirect("/teachers")
 
         else:
-            return render_template("teachers.html", form = addTeacherFormData)
-
-    return render_template("addTeacherForm.html",
-    form = addTeacherFormData)
+            return render_template("addTeacherForm.html", form = addTeacherFormData)
+            
+        return render_template("addTeacherForm.html",
+        form = addTeacherFormData,
+        teacher = teachers)
