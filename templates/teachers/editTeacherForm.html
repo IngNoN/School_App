@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{%block body%}
+<h1>Edit Teacher</h1>
+
+<form method="POST" action="/teachers/edit">
+    {{form.csrf_token}}
+    
+    {{form.teacher_Id()}}
+    <!--title-->
+    <!--description-->
+    <!--dueDate-->
+    <!--isDone-->
+    <div class="mb-3">
+        <label for="title" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+                {{form.first_name()}}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="descriptiopn" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+                {{form.last_name()}}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="dueDate" class="col-sm-2 col-form-label">Birthdate</label>
+        <div class="col-sm-10">
+                {{form.birthdate()}}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="isDone" class="col-sm-2 col-form-label">Teacher In Group</label>
+        <div class="col-sm-10">
+                {{form.teacher_in_group_Id()}}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{%endblock%}
