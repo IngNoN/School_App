@@ -27,6 +27,17 @@
           {{form.teacher_in_group_Id}}
         </div>
     </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Department Manager
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        {%for manager in department_managers:%}
+          <li><a class="dropdown-item" href="#">{{manager.first_name}}</a></li>
+        {%endfor%}
+      </ul>
+    </div>
+
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
 {%endblock%}

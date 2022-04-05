@@ -11,12 +11,13 @@
             <td scope="col">Description</td>
             <td scope="col">Subject</td>
             <td scope="col">Teacher in Group ID</td>
+            <td scope="col">Department Manager ID</td>
             <td scope="col">Actions</td>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan = "6" style="text-align:center">
+            <td colspan = "10" style="text-align:center">
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-secondary" onclick="window.location.href = '/groupOfTeachers/add'">Add Group Of Teachers</button>
                 </div>
@@ -29,6 +30,7 @@
                 <td>{{group.description}}</td>
                 <td>{{group.subject}}</td>
                 <td>{{group.teacher_in_group_Id}}</td>
+                <td>{{group.departmentManager_Id}}</td>
                 <td><form method="post" action="/groupOfTeachers/delete">
                     {{form.csrf_token}}
                     <input type="hidden" name="group_of_teachers_Id" id="group_of_teachers_Id" value="{{group.group_of_teachers_Id}}">

@@ -49,3 +49,10 @@ drop table department_manager;
 drop table group_of_teachers;
 drop table teacher;
 drop table teacher_in_group;
+
+select * from teacher;
+
+alter table group_of_teachers add column departmentManager_Id int;
+alter table group_of_teachers add constraint departmentManager_Id_foreign_key foreign key (departmentManager_Id) references department_manager(departmentManager_Id)
+
+select * from department_manager;

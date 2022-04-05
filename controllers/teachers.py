@@ -1,6 +1,4 @@
-
-
-from flask import Blueprint, redirect, render_template, request
+from flask import Blueprint, redirect, render_template
 
 from forms.addTeacherForm import AddTeacherForm
 from models import Teacher, db

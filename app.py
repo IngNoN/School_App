@@ -1,13 +1,12 @@
-from flask import Blueprint, Flask, redirect, render_template
-from forms.addTeacherForm import AddTeacherForm
-from models import Teacher, db
+from flask import Flask
+from models import db
 from controllers.index import index_blueprint
 from controllers.teachers import teachers_blueprint
 from controllers.teachers import add_teachers_blueprint
 from controllers.departmentManagers import department_managers_blueprint, add_department_manager_blueprint
 from controllers.groupOfTeachers import group_of_teachers_blueprint, add_group_of_teachers_blueprint
 from controllers.teacherInGroup import teacher_in_group_blueprint, add_teacher_in_group_blueprint
-from controllers.delete import delete_teacher_blueprint, delete_department_manager_blueprint, delete_group_of_teachers_blueprint
+from controllers.delete import delete_teacher_blueprint, delete_department_manager_blueprint, delete_group_of_teachers_blueprint, delete_teacher_in_group_blueprint
 
 app = Flask(__name__)
 
@@ -30,5 +29,6 @@ app.register_blueprint(add_teacher_in_group_blueprint)
 app.register_blueprint(delete_teacher_blueprint)
 app.register_blueprint(delete_department_manager_blueprint)
 app.register_blueprint(delete_group_of_teachers_blueprint)
+app.register_blueprint(delete_teacher_in_group_blueprint)
 
 app.run(debug=True)
