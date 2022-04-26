@@ -69,7 +69,7 @@ def submit_edit_group_of_teachers():
 
     if editGroupOfTeachersData.validate_on_submit():
         #daten aus Form auslesen
-        group_of_teachers_Id = editGroupOfTeachersData.departmentManager_Id.data
+        group_of_teachers_Id = editGroupOfTeachersData.group_of_teachers_Id.data
         group_of_teachers_to_edit = db.session.query(GroupOfTeacher).filter(GroupOfTeacher.group_of_teachers_Id == group_of_teachers_Id).first()
         #daten mit update in DB speichern
         group_of_teachers_to_edit.title = editGroupOfTeachersData.title.data
