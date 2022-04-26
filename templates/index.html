@@ -4,10 +4,100 @@
 
 <h1>School Database</h1>
 
-<button onclick="window.location.href='/teachers'" type="button" class="btn btn-primary">Teachers</button>
-<button onclick="window.location.href='/department_managers'" type="button" class="btn btn-primary">Department Managers</button>
-<button onclick="window.location.href='/groupOfTeachers'" type="button" class="btn btn-primary">Group Of Teachers</button>
-<button onclick="window.location.href='/teacher_in_group'" type="button" class="btn btn-primary">Teacher In Group</button>
+<style>
+    h1{
+        color: #f6f4e6;
+    }
+    
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: #272727;
+      font-family: "Montserrat", sans-serif;
+    }
+    
+    .navMenu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    
+    .navMenu a {
+      color: #f6f4e6;
+      text-decoration: none;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      display: inline-block;
+      width: 175px;
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .navMenu a:hover {
+      color: #fddb3a;
+    }
+    
+    .navMenu .dot {
+      width: 6px;
+      height: 6px;
+      background: #fddb3a;
+      border-radius: 50%;
+      opacity: 0;
+      -webkit-transform: translateX(30px);
+      transform: translateX(30px);
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .navMenu a:nth-child(1):hover ~ .dot {
+      -webkit-transform: translateX(50px);
+      transform: translateX(50px);
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      opacity: 1;
+    }
+    
+    .navMenu a:nth-child(2):hover ~ .dot {
+      -webkit-transform: translateX(230px);
+      transform: translateX(230px);
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      opacity: 1;
+    }
+    
+    .navMenu a:nth-child(3):hover ~ .dot {
+      -webkit-transform: translateX(410px);
+      transform: translateX(410px);
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      opacity: 1;
+    }
+    
+    .navMenu a:nth-child(4):hover ~ .dot {
+      -webkit-transform: translateX(590px);
+      transform: translateX(590px);
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      opacity: 1;
+    }
+    
+    </style>
+<nav class="navMenu">
+    <a href='/teachers'>Teachers</a>
+    <a href='/department_managers'>Department Manager</a>
+    <a href='/groupOfTeachers'>Group Of Teacher</a>
+    <a href='/teacher_in_group'>Teacher In Group</a>
+    <div class="dot"></div>
+</nav>
 
 {%endblock%}
 

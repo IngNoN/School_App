@@ -23,9 +23,30 @@
     </div>
     <div class="mb-3">
         <label for="teacher_in_group_Id" class="col-sm-2 col-form-label">Teacher group</label>
-        <div class="col-sm-10">
-          {{form.teacher_in_group_Id}}
-        </div>
+        <table class="table">
+          <thead>
+              <tr>
+                  <td scope="col">Teacher In Group ID</td>
+                  <td scope="col">Teacher ID</td>
+                  <td scope="col">Group Of Teachers ID</td>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td colspan = "6" style="text-align:center">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/teacher_in_group/add'">Add Teacher In Group</button>
+                    </div>
+                </td>
+            </tr>
+            {%for teacher_group in teacher_in_group:%}
+                <tr></tr>
+                    <td>{{teacher_group.teacher_in_group_Id}}</td>
+                    <td>{{teacher_group.teacher_Id}}</td>
+                    <td>{{teacher_group.group_of_teachers_Id}}</td>
+            {%endfor%}
+          </tbody>
+        </table>
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
 </form>

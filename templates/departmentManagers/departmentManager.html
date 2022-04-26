@@ -1,6 +1,18 @@
 {% extends 'base.html'%}
 
 {%block body%}
+<input type="checkbox" id="active">
+      <label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
+      <div class="wrapper">
+        <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/teachers'>Teachers</a></li>
+        <li><a href='/department_managers'>Department Manager</a></li>
+        <li><a href='/groupOfTeachers'>Group Of Teachers</a></li>
+        <li><a href='/teacher_in_group'>Teacher In Group</a></li>
+        </ul>
+      </div>
+
 <h1>Department Managers</h1>
 
 <table class="table">
