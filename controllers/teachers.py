@@ -2,7 +2,7 @@ from re import sub
 from flask import Blueprint, redirect, render_template, request
 from controllers.teacherInGroup import TeacherInGroup
 from forms.addTeacherForm import AddTeacherForm
-from models import Teacher, db
+from models import GroupOfTeacher, Teacher, db
 from forms.editForm import EditTeacherForm
 
 teachers_blueprint = Blueprint("teachers_blueprint", __name__)
@@ -23,7 +23,7 @@ add_teachers_blueprint = Blueprint("add_teachers_blueprint", __name__)
 def add_teachers():
     addTeacherFormData = AddTeacherForm()
     teachers = db.session.query(Teacher).all()
-    teacher_in_group = db.session.query(TeacherInGroup).all()
+    group_of_teachers = db.session.query(GroupOfTeacher).all()
     if True: #request.method == "POST":
         if addTeacherFormData.validate_on_submit():
             teacherData = Teacher()
@@ -38,7 +38,7 @@ def add_teachers():
             return redirect("/teachers")
 
         else:
-            return render_template("teachers/addTeacherForm.html", form = addTeacherFormData, teacher_in_group = teacher_in_group)
+            return render_template("teachers/addTeacherForm.html", form = addTeacherFormData, group_of_teachers = group_of_teachers)
 
 show_edit_teachers_blueprint = Blueprint("show_edit_teachers_blueprint", __name__)
 

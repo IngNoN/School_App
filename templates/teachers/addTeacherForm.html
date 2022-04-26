@@ -23,30 +23,39 @@
     </div>
     <div class="mb-3">
         <label for="teacher_in_group_Id" class="col-sm-2 col-form-label">Teacher group</label>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Group Of Teacher
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {%for group in group_of_teachers:%}
+              <li><a class="dropdown-item" href="#">{{group.title}}</a></li>
+            {%endfor%}
+          </ul>
+        </div>
         <table class="table">
           <thead>
               <tr>
-                  <td scope="col">Teacher In Group ID</td>
-                  <td scope="col">Teacher ID</td>
                   <td scope="col">Group Of Teachers ID</td>
+                  <td scope="col">Title</td>
+                  <td scope="col">Description</td>
+                  <td scope="col">Subject</td>
+                  <td scope="col">Department Manager ID</td>
               </tr>
           </thead>
           <tbody>
-            <tr>
-                <td colspan = "6" style="text-align:center">
-                    <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '/teacher_in_group/add'">Add Teacher In Group</button>
-                    </div>
-                </td>
-            </tr>
-            {%for teacher_group in teacher_in_group:%}
-                <tr></tr>
-                    <td>{{teacher_group.teacher_in_group_Id}}</td>
-                    <td>{{teacher_group.teacher_Id}}</td>
-                    <td>{{teacher_group.group_of_teachers_Id}}</td>
-            {%endfor%}
+            
+              {%for group in group_of_teachers:%}
+                  <tr>
+                      <td>{{group.group_of_teachers_Id}}</td>
+                      <td>{{group.title}}</td>
+                      <td>{{group.description}}</td>
+                      <td>{{group.subject}}</td>
+                      <td>{{group.departmentManager_Id}}</td>
+                  </tr>
+              {%endfor%}
           </tbody>
-        </table>
+      </table>
     </div>
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
