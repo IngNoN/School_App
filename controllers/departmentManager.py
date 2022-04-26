@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, request
 from forms.addDepartmentMangerForm import addDepartmentMangerForm
-from models import DepartmentManager, GroupOfTeacher, db
+from models import DepartmentManager, db
 from forms.editForm import EditDepartmentManagersForm
 
 department_managers_blueprint = Blueprint("department_managers_blueprint", __name__)

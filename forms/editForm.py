@@ -24,7 +24,7 @@ class EditGroupOfTeachersForm(FlaskForm):
     description = TextAreaField("description")
     subject = StringField("subject")
     teacher_in_group_Id = DecimalField("teacher_in_group_Id")
-    department_managers_Id = SelectField("department_managers_Id")
+    department_manager_Id = SelectField("department_managers_Id")
 
 class EditTeacherInGroupForm(FlaskForm):
     teacher_in_group_Id = HiddenField("teacher_in_group_Id")
