@@ -8,4 +8,4 @@ class AddGroupOfTeachersForm(FlaskForm):
     description = TextAreaField("description")
     subject = StringField("subject")
     teacher_in_group_Id = DecimalField("teacher_in_group_Id")
-    department_managers_Id = SelectField("department_managers_Id")
+    department_managers_Id = StringField("department_managers_Id")

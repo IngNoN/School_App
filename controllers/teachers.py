@@ -54,7 +54,7 @@ def show_edit_teachers():
     editTeacherFormData.first_name.data = teacher_to_edit.first_name
     editTeacherFormData.last_name.data = teacher_to_edit.last_name
     editTeacherFormData.birthdate.data = teacher_to_edit.birthdate
-    editTeacherFormData.teacher_in_group_Id.data = teacher_to_edit.teacher_in_group_Id
+    #editTeacherFormData.teacher_in_group_Id.data = teacher_to_edit.teacher_in_group_Id
 
     return render_template("/teachers/editTeacherForm.html", form = editTeacherFormData)
 

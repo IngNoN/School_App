@@ -21,22 +21,13 @@
           {{form.subject}}
         </div>
     </div>
+    
     <div class="mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Teacher group</label>
-        <div class="col-sm-10">
-          {{form.teacher_in_group_Id}}
-        </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Department Manager
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        {%for manager in department_managers:%}
-          <li><a class="dropdown-item" href="#">{{manager.first_name}}</a></li>
-        {%endfor%}
-      </ul>
-    </div>
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Dep</label>
+      <div class="col-sm-10">
+        {{form.department_managers_Id()}}
+      </div>
+  </div>
 
     <button type="submit" class="btn btn-primary">Add</button>
 </form>

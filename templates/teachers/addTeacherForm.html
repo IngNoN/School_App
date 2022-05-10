@@ -21,18 +21,7 @@
           {{form.birthdate}}
         </div>
     </div>
-    <div class="mb-3">
-        <label for="teacher_in_group_Id" class="col-sm-2 col-form-label">Teacher group</label>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Group Of Teacher
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            {%for group in group_of_teachers:%}
-              <li><a class="dropdown-item" href="#">{{group.title}}</a></li>
-            {%endfor%}
-          </ul>
-        </div>
+  
         <table class="table">
           <thead>
               <tr>

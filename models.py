@@ -24,11 +24,11 @@ class GroupOfTeacher(db.Model):
     title = db.Column(db.String(32), nullable=False)
     description = db.Column(db.Text)
     subject = db.Column(db.String(32))
-    teacher_in_group_Id = db.Column(db.ForeignKey('teacher_in_group.teacher_in_group_Id'), index=True)
+    #teacher_in_group_Id = db.Column(db.ForeignKey('teacher_in_group.teacher_in_group_Id'), index=True)
     departmentManager_Id = db.Column(db.ForeignKey('department_manager.departmentManager_Id'), index=True)
 
     department_manager = db.relationship('DepartmentManager', primaryjoin='GroupOfTeacher.departmentManager_Id == DepartmentManager.departmentManager_Id', backref='group_of_teachers')
-    teacher_in_group = db.relationship('TeacherInGroup', primaryjoin='GroupOfTeacher.teacher_in_group_Id == TeacherInGroup.teacher_in_group_Id', backref='group_of_teachers')
+    #teacher_in_group = db.relationship('TeacherInGroup', primaryjoin='GroupOfTeacher.teacher_in_group_Id == TeacherInGroup.teacher_in_group_Id', backref='group_of_teachers')
 
 
 

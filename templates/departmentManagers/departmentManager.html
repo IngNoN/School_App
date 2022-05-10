@@ -40,7 +40,7 @@
                 <td>{{manager.first_name}}</td>
                 <td>{{manager.last_name}}</td>
                 <td>{{manager.email_adress}}</td>
-                <td>{{manager.group_of_teachers_Id}}</td>
+                <td>{{manager.department}}</td>
                 <td><form method="post" action="/department_managers/delete">
                     {{form.csrf_token}}
                     <input type="hidden" name="departmentManager_Id" id="departmentManager_Id" value="{{manager.departmentManager_Id}}">

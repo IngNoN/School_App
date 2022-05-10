@@ -30,6 +30,7 @@ def add_group_of_teachers():
             groupOfTeachersData.title = addGroupOfTeachersData.title.data
             groupOfTeachersData.description = addGroupOfTeachersData.description.data
             groupOfTeachersData.subject = addGroupOfTeachersData.subject.data
+            groupOfTeachersData.departmentManager_Id = addGroupOfTeachersData.department_managers_Id.data
             #groupOfTeachersData.teacher_in_group_Id = addTeacherFormData.teacher_in_group_Id.data
 
             db.session.add(groupOfTeachersData)
@@ -56,7 +57,7 @@ def show_edit_group_of_teachers():
     editGroupOfTeachersData.title.data = group_of_teachers_to_edit.title
     editGroupOfTeachersData.description.data = group_of_teachers_to_edit.description
     editGroupOfTeachersData.subject.data = group_of_teachers_to_edit.subject
-    editGroupOfTeachersData.teacher_in_group_Id.data = group_of_teachers_to_edit.teacher_in_group_Id
+    #editGroupOfTeachersData.teacher_in_group_Id.data = group_of_teachers_to_edit.teacher_in_group_Id
     editGroupOfTeachersData.department_manager_Id.data = group_of_teachers_to_edit.departmentManager_Id
 
     return render_template("/groupOfTeachers/editGroupOfTeacher.html", form = editGroupOfTeachersData, department_managers = department_managers)
@@ -73,10 +74,10 @@ def submit_edit_group_of_teachers():
         group_of_teachers_to_edit = db.session.query(GroupOfTeacher).filter(GroupOfTeacher.group_of_teachers_Id == group_of_teachers_Id).first()
         #daten mit update in DB speichern
         group_of_teachers_to_edit.title = editGroupOfTeachersData.title.data
-        group_of_teachers_to_edit.last_name = editGroupOfTeachersData.description.data
-        group_of_teachers_to_edit.email_adress = editGroupOfTeachersData.subject.data
-        group_of_teachers_to_edit.teacher_in_group_Id = editGroupOfTeachersData.teacher_in_group_Id
-        group_of_teachers_to_edit.department_managers_Id = editGroupOfTeachersData.departemntManagerId.data
+        group_of_teachers_to_edit.description = editGroupOfTeachersData.description.data
+        group_of_teachers_to_edit.subject = editGroupOfTeachersData.subject.data
+        #group_of_teachers_to_edit.teacher_in_group_Id = editGroupOfTeachersData.teacher_in_group_Id
+        group_of_teachers_to_edit.departmentManager_Id = editGroupOfTeachersData.department_manager_Id.data
 
         db.session.commit()
 
