@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields.simple import HiddenField
 
+
 class DeleteItemForm(FlaskForm):
     teacher_Id = HiddenField("teacher_Id")
     departmentManager_Id = HiddenField("departmentManager_Id")

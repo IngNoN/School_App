@@ -14,21 +14,47 @@
     <div class="mb-3">
         <label for="title" class="col-sm-2 col-form-label">First Name</label>
         <div class="col-sm-10">
-                {{form.first_name()}}
+                {{form.first_name(class_="form-control")}}
         </div>
     </div>
     <div class="mb-3">
         <label for="descriptiopn" class="col-sm-2 col-form-label">Last Name</label>
         <div class="col-sm-10">
-                {{form.last_name()}}
+                {{form.last_name(class_="form-control")}}
         </div>
     </div>
     <div class="mb-3">
         <label for="dueDate" class="col-sm-2 col-form-label">Birthdate</label>
         <div class="col-sm-10">
-                {{form.birthdate()}}
+                {{form.birthdate(class_="form-control")}}
         </div>
     </div>
+    <button class="btn btn-outline-success">Add New Item</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td scope="col">Group Of Teachers ID</td>
+                <td scope="col">Title</td>
+                <td scope="col">Description</td>
+                <td scope="col">Subject</td>
+                <td scope="col">Department Manager ID</td>
+            </tr>
+        </thead>
+        <tbody>
+          
+            {%for group in group_of_teachers:%}
+                <tr>
+                    <td>{{group.group_of_teachers_Id}}</td>
+                    <td>{{group.title}}</td>
+                    <td>{{group.description}}</td>
+                    <td>{{group.subject}}</td>
+                    <td>{{group.departmentManager_Id}}</td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 {%endblock%}

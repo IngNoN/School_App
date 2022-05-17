@@ -1,16 +1,22 @@
 from flask import Flask
 from models import db
 from controllers.index import index_blueprint
-from controllers.teachers import (teachers_blueprint, add_teachers_blueprint, 
-                                    show_edit_teachers_blueprint, submit_edit_teachers_blueprint)
-from controllers.departmentManager import (department_managers_blueprint, add_department_manager_blueprint, 
-                                            show_edit_department_manager_blueprint, submit_edit_department_manager_blueprint)
-from controllers.groupOfTeachers import (group_of_teachers_blueprint, add_group_of_teachers_blueprint, 
-                                        show_edit_group_of_teachers_blueprint, submit_edit_group_of_teachers_blueprint)
-from controllers.teacherInGroup import (teacher_in_group_blueprint, add_teacher_in_group_blueprint, 
-                                        show_edit_teacher_in_group_blueprint, submit_edit_teacher_in_group_blueprint)
-from controllers.delete import (delete_teacher_blueprint, delete_department_manager_blueprint, 
-                                delete_group_of_teachers_blueprint, delete_teacher_in_group_blueprint)
+from controllers.teachers import (teachers_blueprint, add_teachers_blueprint,
+                                  show_edit_teachers_blueprint, submit_edit_teachers_blueprint)
+from controllers.departmentManager import (department_managers_blueprint,
+                                           add_department_manager_blueprint,
+                                           show_edit_department_manager_blueprint,
+                                           submit_edit_department_manager_blueprint)
+from controllers.groupOfTeachers import (group_of_teachers_blueprint,
+                                         add_group_of_teachers_blueprint,
+                                         show_edit_group_of_teachers_blueprint,
+                                         submit_edit_group_of_teachers_blueprint)
+from controllers.teacherInGroup import (teacher_in_group_blueprint, add_teacher_in_group_blueprint,
+                                        show_edit_teacher_in_group_blueprint,
+                                        submit_edit_teacher_in_group_blueprint)
+from controllers.delete import (delete_teacher_blueprint, delete_department_manager_blueprint,
+                                delete_group_of_teachers_blueprint,
+                                delete_teacher_in_group_blueprint)
 
 app = Flask(__name__)
 
