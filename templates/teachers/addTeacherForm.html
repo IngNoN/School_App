@@ -21,31 +21,6 @@
           {{form.birthdate(class_="form-control")}}
         </div>
     </div>
-  
-        <table class="table">
-          <thead>
-              <tr>
-                  <td scope="col">Group Of Teachers ID</td>
-                  <td scope="col">Title</td>
-                  <td scope="col">Description</td>
-                  <td scope="col">Subject</td>
-                  <td scope="col">Department Manager ID</td>
-              </tr>
-          </thead>
-          <tbody>
-            
-              {%for group in group_of_teachers:%}
-                  <tr>
-                      <td>{{group.group_of_teachers_Id}}</td>
-                      <td>{{group.title}}</td>
-                      <td>{{group.description}}</td>
-                      <td>{{group.subject}}</td>
-                      <td>{{group.departmentManager_Id}}</td>
-                  </tr>
-              {%endfor%}
-          </tbody>
-      </table>
-    </div>
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
 {%endblock%}
