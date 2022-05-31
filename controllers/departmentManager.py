@@ -3,6 +3,9 @@ from forms.addDepartmentMangerForm import addDepartmentMangerForm
 from models import DepartmentManager, db
 from forms.editForm import EditDepartmentManagersForm
 
+import csv
+import os
+
 department_managers_blueprint = Blueprint(
     "department_managers_blueprint", __name__)
 
@@ -47,7 +50,9 @@ show_edit_department_manager_blueprint = Blueprint(
 
 @show_edit_department_manager_blueprint.route("/department_managers/edit")
 def show_edit_department_manager():
+    global current_data
     editDepartmentManagerData = EditDepartmentManagersForm()
+    current_data = editDepartmentManagerData
     # itemId auslesen
     departmentManager_Id = request.args["departmentManager_Id"]
     # Item laden
@@ -71,7 +76,7 @@ submit_edit_department_manager_blueprint = Blueprint(
 @submit_edit_department_manager_blueprint.route("/department_managers/edit", methods=["post"])
 def submit_edit_department_manager():
     editDepartmentManagerData = EditDepartmentManagersForm()
-
+    create_report_file(editDepartmentManagerData)
     if editDepartmentManagerData.validate_on_submit():
         # daten aus Form auslesen
         departmentManager_Id = editDepartmentManagerData.departmentManager_Id.data
@@ -89,3 +94,32 @@ def submit_edit_department_manager():
 
     else:
         raise("Fatal Error")
+
+
+def create_report_file(teacher_data):
+    header = ["Data", "Previous Data", "New Data"]
+    department_manager_id = [
+        "Department Manager ID", current_data.departmentManager_Id.data,
+        teacher_data.departmentManager_Id.data]
+    first_name = ["First Name", current_data.first_name.data,
+                  teacher_data.first_name.data]
+    last_name = ["Last Name", current_data.last_name.data,
+                 teacher_data.last_name.data]
+    department = ["Department", current_data.department.data,
+                  teacher_data.department.data]
+    email_adress = ["E-Mail Adress", current_data.email_adress.data,
+                    teacher_data.email_adress.data]
+
+    i = 0
+    while os.path.exists("DepartmentManagerEdit%s.csv" % i):
+        i += 1
+    f = open(f"DepartmentManagerEdit{i}.csv", "w")
+
+    writer = csv.writer(f)
+
+    writer.writerow(header)
+    writer.writerow(department_manager_id)
+    writer.writerow(first_name)
+    writer.writerow(last_name)
+    writer.writerow(email_adress)
+    writer.writerow(department)

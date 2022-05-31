@@ -1,3 +1,5 @@
+import csv
+import os
 from flask import Blueprint, redirect, render_template, request
 import sqlalchemy
 from forms.addTeacherForm import AddTeacherForm
@@ -65,7 +67,7 @@ def show_edit_teachers():
 
     group_of_teachers = db.session.query(GroupOfTeacher).filter(
         sqlalchemy.and_(TeacherInGroup.group_of_teachers_Id == GroupOfTeacher.group_of_teachers_Id,
-                    TeacherInGroup.teacher_Id == teacher_Id))
+                        TeacherInGroup.teacher_Id == teacher_Id))
 
     return render_template("/teachers/editTeacherForm.html", form=editTeacherFormData,
                            group_of_teachers=group_of_teachers)
@@ -97,49 +99,26 @@ def submit_edit_teachers():
     else:
         raise("Fatal Error")
 
-import pdfkit
-
 
 def create_report_file(teacher_data):
-    table_html = """<!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-    table, th, td {
-    border: 1px solid black;
-    }
-    
-    table {
-    width: 100%;
-    }
-    </style>
-    </head>
-    <body>
-    
-    <h2>Sample Table</h2>
-    
-    <table>
-    <tr>
-        <th>Field 1</th>
-        <th>Field 2</th>
-    </tr>
-    <tr>
-        <td>x1</td>
-        <td>x2</td>
-    </tr>
-    <tr>
-        <td>x3</td>
-        <td>x4</td>
-    </tr>
-    </table>
-    
-    </body>
-    </html>
-    """
-    
-    pdfkit.from_string(table_html, output_path="sample_table.pdf")
-    """f = open("test.txt", 'w')
-    f.write("old " + current_data.first_name.data + "\n")
-    f.write("\n")
-    f.write("new " + teacher_data.first_name.data)
-    f.close()"""
+    header = ["Data", "Previous Data", "New Data"]
+    teacher_id = ["Teacher ID", current_data.teacher_Id.data,
+                  teacher_data.teacher_Id.data]
+    first_name = ["First Name", current_data.first_name.data,
+                  teacher_data.first_name.data]
+    last_name = ["Last Name", current_data.last_name.data,
+                 teacher_data.last_name.data]
+    birthdate = ["Birthdate", current_data.birthdate.data,
+                 teacher_data.birthdate.data]
+    i = 0
+    while os.path.exists("TeacherDataEdit%s.csv" % i):
+        i += 1
+    f = open(f"TeacherDataEdit{i}.csv", "w")
+
+    writer = csv.writer(f)
+
+    writer.writerow(header)
+    writer.writerow(teacher_id)
+    writer.writerow(first_name)
+    writer.writerow(last_name)
+    writer.writerow(birthdate)

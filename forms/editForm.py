@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields.datetime import DateField
 from wtforms.fields.simple import StringField, TextAreaField, HiddenField
-from wtforms.fields import DecimalField, EmailField
+from wtforms.fields import DecimalField, EmailField, SelectField
 
 
 class EditTeacherForm(FlaskForm):
@@ -26,10 +26,10 @@ class EditGroupOfTeachersForm(FlaskForm):
     description = TextAreaField("description")
     subject = StringField("subject")
     teacher_in_group_Id = DecimalField("teacher_in_group_Id")
-    department_manager_Id = StringField("department_managers_Id")
+    department_manager_Id = SelectField("department_managers_Id")
 
 
 class EditTeacherInGroupForm(FlaskForm):
     teacher_in_group_Id = HiddenField("teacher_in_group_Id")
-    teacher_id = DecimalField("teacher_id")
-    group_of_teachers_Id = DecimalField("group_of_teachers_Id")
+    teacher_id = SelectField("teacher_id")
+    group_of_teachers_Id = SelectField("group_of_teachers_Id")

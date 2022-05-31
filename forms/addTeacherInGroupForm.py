@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import DecimalField
+from wtforms.fields import SelectField
 
 
 class AddTeacherInGroupForm(FlaskForm):
-    teacher_id = DecimalField("teacher_id")
-    group_of_teachers_Id = DecimalField("group_of_teachers_Id")
+    teacher_id = SelectField("teacher_id")
+    group_of_teachers_Id = SelectField("group_of_teachers_Id")

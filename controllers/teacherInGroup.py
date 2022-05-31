@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, request
 from forms.addTeacherInGroupForm import AddTeacherInGroupForm
-from models import TeacherInGroup, db
+from models import GroupOfTeacher, TeacherInGroup, db, Teacher
 from forms.editForm import EditTeacherInGroupForm
 
 teacher_in_group_blueprint = Blueprint("teacher_in_group_blueprint", __name__)
@@ -21,6 +21,16 @@ add_teacher_in_group_blueprint = Blueprint(
 @add_teacher_in_group_blueprint.route("/teacher_in_group/add", methods=["get", "post"])
 def add_teacher_in_group():
     addTeacherInGroupFormData = AddTeacherInGroupForm()
+    teacher = db.session.query(Teacher).order_by(Teacher.teacher_Id).all()
+    teacher_list = [(t.teacher_Id, t.first_name + " " + t.last_name)
+                    for t in teacher]
+    addTeacherInGroupFormData.teacher_id.choices = teacher_list
+
+    group_of_teacher = db.session.query(GroupOfTeacher).order_by(
+        GroupOfTeacher.group_of_teachers_Id).all()
+    group_of_teacher_list = [(gt.group_of_teachers_Id, gt.title)
+                             for gt in group_of_teacher]
+    addTeacherInGroupFormData.group_of_teachers_Id.choices = group_of_teacher_list
     # teacher_in_group = db.session.query(TeacherInGroup).all()
     if True:  # request.method == "POST":
         if addTeacherInGroupFormData.validate_on_submit():
@@ -46,6 +56,16 @@ show_edit_teacher_in_group_blueprint = Blueprint(
 @show_edit_teacher_in_group_blueprint.route("/teacher_in_group/edit")
 def show_edit_group_of_teachers():
     editTeacherInGroupData = EditTeacherInGroupForm()
+    teacher = db.session.query(Teacher).order_by(Teacher.teacher_Id).all()
+    teacher_list = [(t.teacher_Id, t.first_name + " " + t.last_name)
+                    for t in teacher]
+    editTeacherInGroupData.teacher_id.choices = teacher_list
+
+    group_of_teacher = db.session.query(GroupOfTeacher).order_by(
+        GroupOfTeacher.group_of_teachers_Id).all()
+    group_of_teacher_list = [(gt.group_of_teachers_Id, gt.title)
+                             for gt in group_of_teacher]
+    editTeacherInGroupData.group_of_teachers_Id.choices = group_of_teacher_list
     # teacher_in_group = \
     # db.session.query(TeacherInGroup).order_by(TeacherInGroup.teacher_in_group_Id).all()
     # itemId auslesen
@@ -68,6 +88,17 @@ submit_edit_teacher_in_group_blueprint = Blueprint(
 @submit_edit_teacher_in_group_blueprint.route("/teacher_in_group/edit", methods=["post"])
 def submit_edit_teacher_in_group():
     editTeacherInGroupData = EditTeacherInGroupForm()
+
+    teacher = db.session.query(Teacher).order_by(Teacher.teacher_Id).all()
+    teacher_list = [(t.teacher_Id, t.first_name + " " + t.last_name)
+                    for t in teacher]
+    editTeacherInGroupData.teacher_id.choices = teacher_list
+
+    group_of_teacher = db.session.query(GroupOfTeacher).order_by(
+        GroupOfTeacher.group_of_teachers_Id).all()
+    group_of_teacher_list = [(gt.group_of_teachers_Id, gt.title)
+                             for gt in group_of_teacher]
+    editTeacherInGroupData.group_of_teachers_Id.choices = group_of_teacher_list
 
     if editTeacherInGroupData.validate_on_submit():
         # daten aus Form auslesen

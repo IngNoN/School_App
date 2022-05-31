@@ -5,6 +5,9 @@ from forms.addGroupOfTeachersForm import AddGroupOfTeachersForm
 from models import DepartmentManager, GroupOfTeacher, db
 from forms.editForm import EditGroupOfTeachersForm
 
+import csv
+import os
+
 group_of_teachers_blueprint = Blueprint(
     "group_of_teachers_blueprint", __name__)
 
@@ -28,6 +31,9 @@ def add_group_of_teachers():
     addGroupOfTeachersData = AddGroupOfTeachersForm()
     department_managers = db.session.query(DepartmentManager).order_by(
         DepartmentManager.departmentManager_Id).all()
+    department_managers_list = [(dm.departmentManager_Id, dm.first_name + " " + dm.last_name)
+                                for dm in department_managers]
+    addGroupOfTeachersData.department_managers_Id.choices = department_managers_list
     if True:  # request.method == "POST":
         if addGroupOfTeachersData.validate_on_submit():
             groupOfTeachersData = GroupOfTeacher()
@@ -55,9 +61,14 @@ show_edit_group_of_teachers_blueprint = Blueprint(
 
 @show_edit_group_of_teachers_blueprint.route("/groupOfTeachers/edit")
 def show_edit_group_of_teachers():
+    global current_data
     editGroupOfTeachersData = EditGroupOfTeachersForm()
+    current_data = editGroupOfTeachersData
     department_managers = db.session.query(DepartmentManager).order_by(
         DepartmentManager.departmentManager_Id).all()
+    department_managers_list = [(dm.departmentManager_Id, dm.first_name + " " + dm.last_name)
+                                for dm in department_managers]
+    editGroupOfTeachersData.department_manager_Id.choices = department_managers_list
     # itemId auslesen
     group_of_teachers_Id = request.args["group_of_teachers_Id"]
     # Item laden
@@ -85,7 +96,12 @@ submit_edit_group_of_teachers_blueprint = Blueprint(
 @submit_edit_group_of_teachers_blueprint.route("/groupOfTeachers/edit", methods=["post"])
 def submit_edit_group_of_teachers():
     editGroupOfTeachersData = EditGroupOfTeachersForm()
-
+    department_managers = db.session.query(DepartmentManager).order_by(
+        DepartmentManager.departmentManager_Id).all()
+    department_managers_list = [(dm.departmentManager_Id, dm.first_name + " " + dm.last_name)
+                                for dm in department_managers]
+    editGroupOfTeachersData.department_manager_Id.choices = department_managers_list
+    create_report_file(editGroupOfTeachersData)
     if editGroupOfTeachersData.validate_on_submit():
         # daten aus Form auslesen
         group_of_teachers_Id = editGroupOfTeachersData.group_of_teachers_Id.data
@@ -106,3 +122,32 @@ def submit_edit_group_of_teachers():
 
     else:
         raise("Fatal Error")
+
+
+def create_report_file(teacher_data):
+    header = ["Data", "Previous Data", "New Data"]
+    group_of_teachers_id = [
+        "Group Of Teacher ID", current_data.group_of_teachers_Id.data,
+        teacher_data.group_of_teachers_Id.data]
+    title = ["Title", current_data.title.data,
+             teacher_data.title.data]
+    description = ["Description", current_data.description.data,
+                   teacher_data.description.data]
+    subject = ["Subject", current_data.subject.data,
+               teacher_data.subject.data]
+    department_manager_Id = ["Department Manager ID", current_data.department_manager_Id.data,
+                             teacher_data.department_manager_Id.data]
+
+    i = 0
+    while os.path.exists("GroupOfTeacherEdit%s.csv" % i):
+        i += 1
+    f = open(f"GroupOfTeacherEdit{i}.csv", "w")
+
+    writer = csv.writer(f)
+
+    writer.writerow(header)
+    writer.writerow(group_of_teachers_id)
+    writer.writerow(title)
+    writer.writerow(description)
+    writer.writerow(subject)
+    writer.writerow(department_manager_Id)
