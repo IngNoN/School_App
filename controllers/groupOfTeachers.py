@@ -30,7 +30,7 @@ add_group_of_teachers_blueprint = Blueprint(
 def add_group_of_teachers():
     addGroupOfTeachersData = AddGroupOfTeachersForm()
     department_managers = db.session.query(DepartmentManager).order_by(
-        DepartmentManager.departmentManager_Id).all()
+        DepartmentManager.last_name).all()
     department_managers_list = [(dm.departmentManager_Id, dm.first_name + " " + dm.last_name)
                                 for dm in department_managers]
     addGroupOfTeachersData.department_managers_Id.choices = department_managers_list

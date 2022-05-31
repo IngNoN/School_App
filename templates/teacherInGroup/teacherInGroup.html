@@ -19,8 +19,8 @@
     <thead>
         <tr>
             <td scope="col">Teacher In Group ID</td>
-            <td scope="col">Teacher ID</td>
-            <td scope="col">Group Of Teachers ID</td>
+            <td scope="col">Teacher</td>
+            <td scope="col">Group Of Teachers</td>
             <td scope="col">Actions</td>
         </tr>
     </thead>
@@ -35,8 +35,8 @@
         {%for teacher_group in teacher_in_group:%}
             <tr>
                 <td>{{teacher_group.teacher_in_group_Id}}</td>
-                <td>{{teacher_group.teacher_Id}}</td>
-                <td>{{teacher_group.group_of_teachers_Id}}</td>
+                <td>{{teacher_group.teacher.first_name}} {{teacher_group.teacher.last_name}}</td>
+                <td>{{teacher_group.group_of_teacher.title}}</td>
                 <td><form method="post" action="/teacher_in_group/delete">
                     <input type="hidden" name="teacher_in_group_Id" id="teacher_in_group_Id" value="{{teacher_group.teacher_in_group_Id}}">
                     <button class="btn btn-outline-dark" onclick="delete_teacher_in_group(this); return false;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">

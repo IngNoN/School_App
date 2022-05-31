@@ -133,3 +133,6 @@ dmypy.json
 
 #.pdf File
 *.pdf
+
+# .csf File
+*.csv

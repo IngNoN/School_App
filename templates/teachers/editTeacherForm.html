@@ -49,7 +49,7 @@
                     <td>{{group.title}}</td>
                     <td>{{group.description}}</td>
                     <td>{{group.subject}}</td>
-                    <td>{{group.departmentManager_Id}}</td>
+                    <td>{{group.department_manager.first_name}} {{group.department_manager.last_name}}</td>
                 </tr>
             {%endfor%}
         </tbody>
