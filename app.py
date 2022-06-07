@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 app.secret_key = "VerySecretSecretKey"
 
-app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:root@localhost/school_app"
 db.init_app(app)
 
@@ -49,4 +49,6 @@ app.register_blueprint(show_edit_group_of_teachers_blueprint)
 app.register_blueprint(submit_edit_group_of_teachers_blueprint)
 app.register_blueprint(show_edit_teacher_in_group_blueprint)
 app.register_blueprint(submit_edit_teacher_in_group_blueprint)
-app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(debug=True)
