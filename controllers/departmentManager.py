@@ -1,10 +1,12 @@
 from flask import Blueprint, redirect, render_template, request
 from forms.addDepartmentMangerForm import addDepartmentMangerForm
-from models import DepartmentManager, db
+from models import DepartmentManager, db, GroupOfTeacher
 from forms.editForm import EditDepartmentManagersForm
 
 import csv
 import os
+
+ROWS_PER_PAGE = 5
 
 department_managers_blueprint = Blueprint(
     "department_managers_blueprint", __name__)
@@ -13,6 +15,12 @@ department_managers_blueprint = Blueprint(
 @department_managers_blueprint.route("/department_managers", methods=["get", "post"])
 def department_managers():
     department_managers = db.session.query(DepartmentManager).all()
+
+    page = request.args.get('page', 1, type=int)
+
+    department_managers = DepartmentManager.query.paginate(
+        page=page, per_page=ROWS_PER_PAGE)
+
     addDepartmentMangerFormData = addDepartmentMangerForm()
     return render_template("departmentManagers/departmentManager.html",
                            department_managers=department_managers,
@@ -26,7 +34,13 @@ add_department_manager_blueprint = Blueprint(
 @add_department_manager_blueprint.route("/department_managers/add", methods=["get", "post"])
 def add_department_manager():
     addDepartmentMangerFormData = addDepartmentMangerForm()
-    if True:  # request.method == "POST":
+
+    group_of_teacher = db.session.query(GroupOfTeacher).order_by(
+        GroupOfTeacher.title).all()
+    group_of_teacher_list = [(gt.group_of_teachers_Id, gt.title)
+                             for gt in group_of_teacher]
+    addDepartmentMangerFormData.department.choices = group_of_teacher_list
+    if request.method == "POST":
         if addDepartmentMangerFormData.validate_on_submit():
             DepartmentManagerData = DepartmentManager()
             DepartmentManagerData.first_name = addDepartmentMangerFormData.first_name.data
@@ -42,6 +56,9 @@ def add_department_manager():
         else:
             return render_template("departmentManagers/addDepartmentManagerForm.html",
                                    form=addDepartmentMangerFormData)
+    else:
+        return render_template("departmentManagers/addDepartmentManagerForm.html",
+                               form=addDepartmentMangerFormData)
 
 
 show_edit_department_manager_blueprint = Blueprint(

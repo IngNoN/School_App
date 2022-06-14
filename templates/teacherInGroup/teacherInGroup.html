@@ -32,7 +32,7 @@
                 </div>
             </td>
         </tr>
-        {%for teacher_group in teacher_in_group:%}
+        {%for teacher_group in teacher_in_group.items:%}
             <tr>
                 <td>{{teacher_group.teacher_in_group_Id}}</td>
                 <td>{{teacher_group.teacher.first_name}} {{teacher_group.teacher.last_name}}</td>
@@ -53,4 +53,40 @@
         {%endfor%}
     </tbody>
 </table>
+
+<div class="text-right" style="text-align:center">
+    <a href="{{ url_for('teacher_in_group_blueprint.teacher_in_group', page=teacher_in_group.prev_num) }}"
+       class="btn btn-outline-dark 
+       {% if teacher_in_group.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+<!-- Loop through the number of pages to display a link for each-->
+    {% for page_num in teacher_in_group.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+<!-- Check for the active page and set the link to "Active"-->
+            {% if teacher_in_group.page == page_num %}
+            <a href="{{ url_for('teacher_in_group_blueprint.teacher_in_group', page=page_num) }}"
+               class="btn btn-dark">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('teacher_in_group_blueprint.teacher_in_group', page=page_num) }}"
+               class="btn btn-outline-dark">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('teacher_in_group_blueprint.teacher_in_group', page=teacher_in_group.next_num) }}"
+       class="btn btn-outline-dark 
+       {% if teacher_in_group.page == teacher_in_group.pages %}disabled{% endif %}">
+        &raquo;
+    </a>
+</div>
+<p class="text-right mt-3" style="text-align:center">
+   Showing page {{ teacher_in_group.page }} of {{ teacher_in_group.pages }}
+</p>
+
 {%endblock%}

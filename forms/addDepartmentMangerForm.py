@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields.simple import StringField
 from wtforms import validators
-from wtforms.fields import EmailField
+from wtforms.fields import EmailField, SelectField
 
 
 class addDepartmentMangerForm(FlaskForm):
@@ -9,4 +9,4 @@ class addDepartmentMangerForm(FlaskForm):
     last_name = StringField("last_name", validators=[
                             validators.InputRequired()])
     email_adress = EmailField("email_adress")
-    department = StringField("department")
+    department = SelectField("department")

@@ -8,13 +8,19 @@ from forms.editForm import EditGroupOfTeachersForm
 import csv
 import os
 
+ROWS_PER_PAGE = 5
+
+
 group_of_teachers_blueprint = Blueprint(
     "group_of_teachers_blueprint", __name__)
 
 
 @group_of_teachers_blueprint.route("/groupOfTeachers", methods=["get", "post"])
 def group_of_teachers():
-    group_of_teachers = db.session.query(GroupOfTeacher).all()
+    page = request.args.get('page', 1, type=int)
+
+    group_of_teachers = GroupOfTeacher.query.order_by(GroupOfTeacher.title).\
+        paginate(page=page, per_page=ROWS_PER_PAGE)
     addGroupOfTeachersData = AddGroupOfTeachersForm()
 
     return render_template("groupOfTeachers/groupOfTeachers.html",

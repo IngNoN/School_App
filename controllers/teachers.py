@@ -6,12 +6,17 @@ from forms.addTeacherForm import AddTeacherForm
 from models import GroupOfTeacher, Teacher, TeacherInGroup, db
 from forms.editForm import EditTeacherForm
 
+ROWS_PER_PAGE = 5
+
+
 teachers_blueprint = Blueprint("teachers_blueprint", __name__)
 
 
 @teachers_blueprint.route("/teachers", methods=["get", "post"])
 def teachers():
-    teachers = db.session.query(Teacher).all()
+    page = request.args.get('page', 1, type=int)
+
+    teachers = Teacher.query.order_by(Teacher.last_name).paginate(page=page, per_page=ROWS_PER_PAGE)
     addTeacherFormData = AddTeacherForm()
 
     return render_template("teachers/teachers.html",

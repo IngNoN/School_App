@@ -3,12 +3,20 @@ from forms.addTeacherInGroupForm import AddTeacherInGroupForm
 from models import GroupOfTeacher, TeacherInGroup, db, Teacher
 from forms.editForm import EditTeacherInGroupForm
 
+
+ROWS_PER_PAGE = 5
+
 teacher_in_group_blueprint = Blueprint("teacher_in_group_blueprint", __name__)
 
 
 @teacher_in_group_blueprint.route("/teacher_in_group", methods=["get", "post"])
 def teacher_in_group():
     teacher_in_group = db.session.query(TeacherInGroup).all()
+
+    page = request.args.get('page', 1, type=int)
+
+    teacher_in_group = TeacherInGroup.query.order_by(
+        TeacherInGroup.teacher_Id).paginate(page=page, per_page=ROWS_PER_PAGE)
 
     return render_template("teacherInGroup/teacherInGroup.html",
                            teacher_in_group=teacher_in_group)

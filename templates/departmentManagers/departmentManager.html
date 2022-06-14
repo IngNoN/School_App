@@ -33,13 +33,13 @@
                 </div>
             </td>
         </tr>
-        {%for manager in department_managers:%}
+        {%for manager in department_managers.items:%}
             <tr>
                 <td>{{manager.departmentManager_Id}}</td>
                 <td>{{manager.first_name}}</td>
                 <td>{{manager.last_name}}</td>
                 <td>{{manager.email_adress}}</td>
-                <td>{{manager.department}}</td>
+                <td>{{manager.group_of_teachers.title}}</td>
                 <td><form method="post" action="/department_managers/delete">
                     {{form.csrf_token}}
                     <input type="hidden" name="departmentManager_Id" id="departmentManager_Id" value="{{manager.departmentManager_Id}}">
@@ -60,6 +60,41 @@
     </tbody>
 </table>
 
+
+<div class="text-right" style="text-align:center">
+    <a href="{{ url_for('department_managers_blueprint.department_managers', page=department_managers.prev_num) }}"
+       class="btn btn-outline-dark 
+       {% if department_managers.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+<!-- Loop through the number of pages to display a link for each-->
+    {% for page_num in department_managers.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+<!-- Check for the active page and set the link to "Active"-->
+            {% if department_managers.page == page_num %}
+            <a href="{{ url_for('department_managers_blueprint.department_managers', page=page_num) }}"
+               class="btn btn-dark">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('department_managers_blueprint.department_managers', page=page_num) }}"
+               class="btn btn-outline-dark">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('department_managers_blueprint.department_managers', page=department_managers.next_num) }}"
+       class="btn btn-outline-dark 
+       {% if department_managers.page == department_managers.pages %}disabled{% endif %}">
+        &raquo;
+    </a>
+</div>
+<p class="text-right mt-3" style="text-align:center">
+   Showing page {{ department_managers.page }} of {{ department_managers.pages }}
+</p>
 
 
 {%endblock%}
